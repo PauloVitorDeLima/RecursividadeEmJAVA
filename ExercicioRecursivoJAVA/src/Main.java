@@ -10,21 +10,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ExercicioSudoku();
-        QuantidadeTroco();    //FEITO
-        ExercicioBase();      //FEITO
-        Exercicio01();        //FEITO
-        Exercicio02();        //FEITO
-        Exercicio03();        //FEITO
-        Exercicio04();        //FEITO
-        Exercicio05();
-        Exercicio06();
-        Exercicio07();
-        Exercicio08();
-        Exercicio09();        //FEITO
-        Exercicio10();          //MAISOUMENOS
-        Exercicio11();
-        Exercicio12();
+        SudokuGerador();        //FEITO
+        QuantidadeTroco();      //FEITO
+        Fatorial();             //FEITO
+        Somatoria();            //FEITO
+        Potencia();             //FEITO
+        Divisao();              //FEITO
+        Binario();              //FEITO
+        MenorDivisorComum();    //FEITO
+        Inversao();            //FEITO
+        Palindromo();          //FEITO
 
     }
     public static void QuantidadeTroco() {
@@ -186,7 +181,7 @@ public class Main {
             System.out.println("Moedas de 1 Real: " + MoedaQuantidade[5]);
         }
     }
-    public static void ExercicioBase(){
+    public static void Fatorial(){
         System.out.println("Valor para realizar o Fatorial:");
         int valor = in.nextInt();
         System.out.println("O fatorial de "+valor+" é "+FatorialRecursivo(valor));
@@ -198,7 +193,7 @@ public class Main {
             return num * FatorialRecursivo(num - 1);
         }
     }
-    public static void Exercicio01(){
+    public static void Somatoria(){
         System.out.println("Escolha o valor para realizar a somatória:");
         int valor = in.nextInt();
         System.out.println("O valor da somatória de "+valor+" é "+SomatoriaRecursiva(valor));
@@ -210,7 +205,7 @@ public class Main {
             return num + SomatoriaRecursiva(num - 1);
         }
     }
-    public static void Exercicio02() {
+    public static void Potencia() {
         System.out.println("Informe um número inteiro:");
         int valor = in.nextInt();
         System.out.println("Informe uma potencia para esse valor:");
@@ -225,7 +220,7 @@ public class Main {
             return valor * PotenciaRecursiva(valor, potencia - 1);
         }
     }
-    public static void Exercicio03(){
+    public static void Divisao(){
         System.out.println("Escreva o dividendo");
         int dividendo = in.nextInt();
         System.out.println("Escreva o divisor");
@@ -240,7 +235,7 @@ public class Main {
             return dividendo - DivisaoRecursiva(dividendo - divisor,divisor);
         }
     }
-    public static void Exercicio04(){
+    public static void Binario(){
         System.out.println("Informe o valor que será convertido para Binário:");
         int decimal = in.nextInt();
         String binario = "";
@@ -257,7 +252,7 @@ public class Main {
             }
         }
     }
-    public static void Exercicio05(){
+    public static void MenorDivisorComum(){
         System.out.println("Informe o primeiro valor para decompor:");
         int valor1 = in.nextInt();
         System.out.println("Informe o segundo valor para decompor:");
@@ -271,15 +266,7 @@ public class Main {
             return valor1 / MdcRecursivo(valor1/=valor2, valor2);
         }
     }
-    public static void Exercicio06(){
-
-    }
-    public static void Exercicio07(){
-
-    }public static void Exercicio08(){
-
-    }
-    public static void Exercicio09(){
+    public static void Inversao(){
         System.out.println("Informe a palavra para inverter");
         String palavra = in.next();
         System.out.println(InversaoRecursiva(palavra));
@@ -293,7 +280,7 @@ public class Main {
             return palavra.charAt(ultimaPosicao) + InversaoRecursiva(palavra.substring(0, ultimaPosicao));
         }
     }
-    public static void Exercicio10(){
+    public static void Palindromo(){
         String palavra;
         System.out.println("Informe a palavra para verificar se é palíndromo:");
         palavra = in.nextLine();
@@ -312,13 +299,7 @@ public class Main {
             return palavra.charAt(palavra.length() - 1) + PolindromoRecursivo(palavra.substring(0, palavra.length() - 1));
         }
     }
-    public static void Exercicio11(){
-
-    }
-    public static void Exercicio12(){
-
-    }
-    public static void ExercicioSudoku(){
+    public static void SudokuGerador(){
         final int n = 3;//aqui vai o numero de elementos do seu sudoku(3 vai ser um sudoku 3x3
         final int[][] field = new int[n*n][n*n];//matriz onde será armazenado o sudoku
         Random numeroAleatorio = new Random();
