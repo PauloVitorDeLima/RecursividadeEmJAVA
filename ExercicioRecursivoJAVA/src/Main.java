@@ -9,43 +9,195 @@ public class Main {
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
+        int op = 1;
+        while(op > 0 && op <= 11){
 
-        SudokuGerador();        //FEITO
-        QuantidadeTroco();      //FEITO
-        Fatorial();             //FEITO
-        Somatoria();            //FEITO
-        Potencia();             //FEITO
-        Divisao();              //FEITO
-        Binario();              //FEITO
-        MenorDivisorComum();    //FEITO
-        Inversao();            //FEITO
-        Palindromo();          //FEITO
-
+            System.out.println("--------------------------------");
+            System.out.println("--------------------------------");
+            System.out.println("1 - Fatorial");
+            System.out.println("2 - Somatória");
+            System.out.println("3 - Potencial");
+            System.out.println("4 - Divisao");
+            System.out.println("5 - Binario");
+            System.out.println("6 - MenorDivisorComum");
+            System.out.println("7 - Inversao");
+            System.out.println("8 - Palindromo");
+            System.out.println("9 - Sudoku Gerador");
+            System.out.println("10 - Quantidade de Troco Iterativo");
+            System.out.println("11 - Quantidade Troco Recursiva");
+            System.out.println("--------------------------------");
+            System.out.println("--------------------------------");
+            System.out.println("Escolha o exercício a seguir: ");
+            op = in.nextInt();
+            if(op == 1){
+                Fatorial();
+            }if(op == 2){
+                Somatoria();
+            }if(op == 3){
+                Potencia();
+            }if(op == 4){
+                Divisao();
+            }if(op == 5){
+                Binario();
+            }if(op == 6){
+                MenorDivisorComum();
+            }if(op == 7){
+                Inversao();
+            }if(op == 8){
+                Palindromo();
+            }if(op == 9){
+                SudokuGerador();
+            }if(op == 10){
+                QuantidadeTrocoIterativa();
+            }if(op == 11){
+                QuantidadeTrocoRecursiva();
+            }
+        }
     }
-    public static void QuantidadeTroco() {
+
+    public static void QuantidadeTrocoRecursiva() {
+        System.out.println("\n \n \n Exercicio Troco: ");
+        Double ValorRecebido = 0.0;
+        Double ValorCompra = 0.0;
+        Double ValorTroco = 0.0;
+        Double Dinheiro[] = new Double[12];
+        int DinheiroQuantidade[] = new int [12];
+        for(int i = 0; i <= 11; i++){
+            DinheiroQuantidade[i] = 0;
+        }
+        System.out.println("Informe o valor da compra:");
+        ValorCompra = in.nextDouble();
+        System.out.println("Informe o valor Fornecido pelo cliente:");
+        ValorRecebido = in.nextDouble();
+
+        ValorTroco = ValorRecebido - ValorCompra;
+
+        if (ValorTroco == 0) {
+            System.out.println("O valor está correto, não precisa de troco!!");
+        } else if (ValorTroco >= 0.01) {
+            System.out.println("Entrege ao cliente: " + RecursividadeTroco(ValorTroco,
+                    DinheiroQuantidade, Dinheiro));
+        }
+    }
+
+    private static String RecursividadeTroco(Double ValorTroco, int DinheiroQuantidade[],
+                                             Double Dinheiro[]) {
+
+        if(ValorTroco < 0.01){
+            return "Notas de 2 Reais:" + DinheiroQuantidade[6]+ " \n " +
+                    "Notas de 5 Reais:" + DinheiroQuantidade[7]+ " \n " +
+                    "Notas de 10 Reais:" + DinheiroQuantidade[8]+ " \n " +
+                    "Notas de 20 Reais:" + DinheiroQuantidade[9]+ " \n " +
+                    "Notas de 50 Reais:" + DinheiroQuantidade[10]+ " \n " +
+                    "Notas de 100 Reais:" + DinheiroQuantidade[11]+ " \n " +
+                    "Moeda de 1 centavo:" + DinheiroQuantidade[0]+ " \n " +
+                    "Moeda de 5 centavos:" + DinheiroQuantidade[1]+ " \n " +
+                    "Moeda de 10 centavos:" + DinheiroQuantidade[2]+ " \n " +
+                    "Moeda de 25 centavos:" + DinheiroQuantidade[3]+ " \n " +
+                    "Moeda de 50 centavos:" + DinheiroQuantidade[4]+ " \n " +
+                    "Moeda de 1 Real:" + DinheiroQuantidade[5];
+
+       }else{
+           if (ValorTroco >= 2) {
+               if (ValorTroco >= 100.0) {
+                   //Nota de 100 Reais
+                   ValorTroco -= Dinheiro[11];
+                   DinheiroQuantidade[11] = + 1;
+               }
+               if (ValorTroco >= 50.0 && ValorTroco < 100.0) {
+                   //Nota de 50 Reais
+                   ValorTroco -= Dinheiro[10];
+                   DinheiroQuantidade[10]= + 1;
+
+               }
+               if (ValorTroco >= 20.0 && ValorTroco < 50.0) {
+                   //Nota de 20 Reais
+                   ValorTroco -= Dinheiro[9];
+                   DinheiroQuantidade[9]= + 1;
+
+               }
+               if (ValorTroco >= 10.0 && ValorTroco < 20.0) {
+                   //Nota de 10 Reais
+                   ValorTroco -= Dinheiro[8];
+                   DinheiroQuantidade[8]= + 1;
+
+               }
+               if (ValorTroco >= 5.0 && ValorTroco < 10.0) {
+                   //Nota de 5 Reais
+                   ValorTroco -= Dinheiro[8];
+                   DinheiroQuantidade[7]= + 1;
+
+               }
+               if (ValorTroco >= 2 && ValorTroco < 5) {
+                   //Nota de 2 Reais
+                   ValorTroco -= Dinheiro[6];
+                   DinheiroQuantidade[6]= + 1;
+               }
+               //Verifica quantas moedas usará
+           } else if (ValorTroco < 2) {
+               if (ValorTroco >= 1) {
+                   //Moeda de 1 real
+                   ValorTroco -= Dinheiro[5];
+                   DinheiroQuantidade[5]= + 1;
+
+               }
+               if (ValorTroco >= 0.50 && ValorTroco < 1) {
+                   //Moeda de 50 centavos
+                   ValorTroco -= Dinheiro[4];
+                   DinheiroQuantidade[4]= + 1;
+
+               }
+               if (ValorTroco >= 0.25 && ValorTroco < 0.50) {
+                   //Moeda de 25 centavos
+                   ValorTroco -= Dinheiro[3];
+                   DinheiroQuantidade[3]= + 1;
+
+               }
+               if (ValorTroco >= 0.10 && ValorTroco < 0.25) {
+                   //Moeda de 10 centavos
+                   ValorTroco -= Dinheiro[2];
+                   DinheiroQuantidade[2]= + 1;
+
+               }
+               if (ValorTroco >= 0.05 && ValorTroco < 0.10) {
+                   //Moeda de 5 centavos
+                   ValorTroco -= Dinheiro[1];
+                   DinheiroQuantidade[1]= + 1;
+
+               }
+               if (ValorTroco >= 0.01 && ValorTroco < 0.05) {
+                   //Moeda de 1 centavo
+                   ValorTroco -= Dinheiro[0];
+                   DinheiroQuantidade[0]= + 1;
+               }
+           }
+            return RecursividadeTroco(ValorTroco, DinheiroQuantidade, Dinheiro);
+       }
+    }
+
+    public static void QuantidadeTrocoIterativa() {
         System.out.println("\n \n \n Exercicio Troco: ");
         Double ValorRecebido;
         Double ValorCompra;
         Double ValorTroco;
-        Double Moeda[] = new Double[6];
-        int MoedaQuantidade[] = new int[6];
-        int NotaQuantidade[] = new int[6];
-        Double Nota[] = new Double[6];
-        //Moedas Existentes
-        Moeda[0] = 0.01;
-        Moeda[1] = 0.05;
-        Moeda[2] = 0.10;
-        Moeda[3] = 0.25;
-        Moeda[4] = 0.50;
-        Moeda[5] = 1.0;
+        Double Dinheiro[] = new Double[12];
+        int DinheiroQuantidade[] = new int [12];
 
-        //Notas existentes
-        Nota[0] = 2.0;
-        Nota[1] = 5.0;
-        Nota[2] = 10.0;
-        Nota[3] = 20.0;
-        Nota[4] = 50.0;
-        Nota[5] = 100.0;
+
+        //DinheiroExistente
+        Dinheiro[0] = 0.01;
+        Dinheiro[1] = 0.05;
+        Dinheiro[2] = 0.10;
+        Dinheiro[3] = 0.25;
+        Dinheiro[4] = 0.50;
+        Dinheiro[5] = 1.0;
+        Dinheiro[6] = 2.0;
+        Dinheiro[7] = 5.0;
+        Dinheiro[8] = 10.0;
+        Dinheiro[9] = 20.0;
+        Dinheiro[10] = 50.0;
+        Dinheiro[11] = 100.0;
+
 
         System.out.println("Informe o valor da compra:");
         ValorCompra = in.nextDouble();
@@ -53,12 +205,11 @@ public class Main {
         ValorRecebido = in.nextDouble();
 
         ValorTroco = ValorRecebido - ValorCompra;
-        if (ValorTroco >= 0.01) {
+        if (ValorTroco == 0) {
+            System.out.println("O valor está correto, não precisa de troco!!");
+        }else if (ValorTroco >= 0.01) {
             System.out.println("O valor a ser devolvido será de " + ValorTroco);
 
-            if (ValorTroco == 0) {
-                System.out.println("O valor está correto, não precisa de troco!!");
-            }
             //Verifica se ainda existe dinheiro para diminuir
             while (ValorTroco > 0.01) {
                 //Verifica quantas notas usará
@@ -66,75 +217,74 @@ public class Main {
                 if (ValorTroco >= 2) {
                     if (ValorTroco >= 100.0) {
                         //Nota de 100 Reais
-                        ValorTroco -= Nota[5];
-                        NotaQuantidade[5]++;
+                        ValorTroco -= Dinheiro[11];
+                        DinheiroQuantidade[11] = + 1;
                     }
                     if (ValorTroco >= 50.0 && ValorTroco < 100.0) {
                         //Nota de 50 Reais
-                        ValorTroco -= Nota[4];
-                        NotaQuantidade[4]++;
+                        ValorTroco -= Dinheiro[10];
+                        DinheiroQuantidade[10]= + 1;
 
                     }
                     if (ValorTroco >= 20.0 && ValorTroco < 50.0) {
                         //Nota de 20 Reais
-                        ValorTroco -= Nota[3];
-                        NotaQuantidade[3]++;
+                        ValorTroco -= Dinheiro[9];
+                        DinheiroQuantidade[9]= + 1;
 
                     }
                     if (ValorTroco >= 10.0 && ValorTroco < 20.0) {
                         //Nota de 10 Reais
-                        ValorTroco -= Nota[2];
-                        NotaQuantidade[2]++;
+                        ValorTroco -= Dinheiro[8];
+                        DinheiroQuantidade[8]= + 1;
 
                     }
                     if (ValorTroco >= 5.0 && ValorTroco < 10.0) {
                         //Nota de 5 Reais
-                        ValorTroco -= Nota[1];
-                        NotaQuantidade[1]++;
+                        ValorTroco -= Dinheiro[8];
+                        DinheiroQuantidade[7]= + 1;
 
                     }
                     if (ValorTroco >= 2 && ValorTroco < 5) {
                         //Nota de 2 Reais
-                        ValorTroco -= Nota[0];
-                        NotaQuantidade[0]++;
+                        ValorTroco -= Dinheiro[6];
+                        DinheiroQuantidade[6]= + 1;
                     }
                     //Verifica quantas moedas usará
                 } else if (ValorTroco < 2) {
                     if (ValorTroco >= 1) {
                         //Moeda de 1 real
-                        ValorTroco -= Moeda[5];
-                        MoedaQuantidade[5]++;
+                        ValorTroco -= Dinheiro[5];
+                        DinheiroQuantidade[5]= + 1;
 
                     }
                     if (ValorTroco >= 0.50 && ValorTroco < 1) {
                         //Moeda de 50 centavos
-                        ValorTroco -= Moeda[4];
-                        MoedaQuantidade[4]++;
+                        ValorTroco -= Dinheiro[4];
+                        DinheiroQuantidade[4]= + 1;
 
                     }
                     if (ValorTroco >= 0.25 && ValorTroco < 0.50) {
                         //Moeda de 25 centavos
-                        ValorTroco -= Moeda[3];
-                        MoedaQuantidade[3]++;
+                        ValorTroco -= Dinheiro[3];
+                        DinheiroQuantidade[3]= + 1;
 
                     }
                     if (ValorTroco >= 0.10 && ValorTroco < 0.25) {
                         //Moeda de 10 centavos
-                        ValorTroco -= Moeda[2];
-                        MoedaQuantidade[2]++;
+                        ValorTroco -= Dinheiro[2];
+                        DinheiroQuantidade[2]= + 1;
 
                     }
                     if (ValorTroco >= 0.05 && ValorTroco < 0.10) {
                         //Moeda de 5 centavos
-                        ValorTroco -= Moeda[1];
-                        MoedaQuantidade[1]++;
+                        ValorTroco -= Dinheiro[1];
+                        DinheiroQuantidade[1]= + 1;
 
                     }
                     if (ValorTroco >= 0.01 && ValorTroco < 0.05) {
                         //Moeda de 1 centavo
-                        ValorTroco -= Moeda[0];
-                        MoedaQuantidade[0]++;
-
+                        ValorTroco -= Dinheiro[0];
+                        DinheiroQuantidade[0]= + 1;
                     }
                 }
             }
@@ -143,42 +293,42 @@ public class Main {
             System.out.println("Está faltando " + (ValorTroco - ValorTroco - ValorTroco) + " para validar a compra");
         }
         System.out.println("Entregue ao Cliente:");
-        if (NotaQuantidade[0] != 0) {
-            System.out.println("Notas de 2 Reais: " + NotaQuantidade[0]);
+        if (DinheiroQuantidade[6] != 0) {
+            System.out.println("Notas de 2 Reais: " + DinheiroQuantidade[6]);
         }
-        if (NotaQuantidade[1] != 0) {
-            System.out.println("Notas de 5 Reais: " + NotaQuantidade[1]);
+        if (DinheiroQuantidade[7] != 0) {
+            System.out.println("Notas de 5 Reais: " + DinheiroQuantidade[7]);
         }
-        if (NotaQuantidade[2] != 0) {
-            System.out.println("Notas de 10 Reais: " + NotaQuantidade[2]);
+        if (DinheiroQuantidade[8] != 0) {
+            System.out.println("Notas de 10 Reais: " + DinheiroQuantidade[8]);
         }
-        if (NotaQuantidade[3] != 0) {
-            System.out.println("Notas de 20 Reais: " + NotaQuantidade[3]);
+        if (DinheiroQuantidade[9] != 0) {
+            System.out.println("Notas de 20 Reais: " + DinheiroQuantidade[9]);
         }
-        if (NotaQuantidade[4] != 0) {
-            System.out.println("Notas de 50 Reais: " + NotaQuantidade[4]);
+        if (DinheiroQuantidade[10] != 0) {
+            System.out.println("Notas de 50 Reais: " + DinheiroQuantidade[10]);
         }
-        if (NotaQuantidade[5] != 0) {
-            System.out.println("Notas de 100 Reais: " + NotaQuantidade[5]);
+        if (DinheiroQuantidade[11] != 0) {
+            System.out.println("Notas de 100 Reais: " + DinheiroQuantidade[11]);
         }
         System.out.println("--------------------------------------");
-        if (MoedaQuantidade[0] != 0) {
-            System.out.println("Moedas de 1 Centavo: " + MoedaQuantidade[0]);
+        if (DinheiroQuantidade[0] != 0) {
+            System.out.println("Moedas de 1 Centavo: " + DinheiroQuantidade[0]);
         }
-        if (MoedaQuantidade[1] != 0) {
-            System.out.println("Moedas de 5 Centavo: " + MoedaQuantidade[1]);
+        if (DinheiroQuantidade[1] != 0) {
+            System.out.println("Moedas de 5 Centavo: " + DinheiroQuantidade[1]);
         }
-        if (MoedaQuantidade[2] != 0) {
-            System.out.println("Moedas de 10 Centavo: " + MoedaQuantidade[2]);
+        if (DinheiroQuantidade[2] != 0) {
+            System.out.println("Moedas de 10 Centavo: " + DinheiroQuantidade[2]);
         }
-        if (MoedaQuantidade[3] != 0) {
-            System.out.println("Moedas de 25 Centavo: " + MoedaQuantidade[3]);
+        if (DinheiroQuantidade[3] != 0) {
+            System.out.println("Moedas de 25 Centavo: " + DinheiroQuantidade[3]);
         }
-        if (MoedaQuantidade[4] != 0) {
-            System.out.println("Moedas de 50 Centavo: " + MoedaQuantidade[4]);
+        if (DinheiroQuantidade[4] != 0) {
+            System.out.println("Moedas de 50 Centavo: " + DinheiroQuantidade[4]);
         }
-        if (MoedaQuantidade[5] != 0) {
-            System.out.println("Moedas de 1 Real: " + MoedaQuantidade[5]);
+        if (DinheiroQuantidade[5] != 0) {
+            System.out.println("Moedas de 1 Real: " + DinheiroQuantidade[5]);
         }
     }
     public static void Fatorial(){
@@ -300,24 +450,28 @@ public class Main {
         }
     }
     public static void SudokuGerador(){
-        final int n = 3;//aqui vai o numero de elementos do seu sudoku(3 vai ser um sudoku 3x3
-        final int[][] field = new int[n*n][n*n];//matriz onde será armazenado o sudoku
+        final int Elementos = 3;//aqui vai o numero de elementos do seu sudoku(3 vai ser um sudoku 3x3
+        final int[][] CampoMatriz = new int[Elementos*Elementos][Elementos*Elementos];//matriz onde será armazenado o sudoku
         Random numeroAleatorio = new Random();
-        int x = numeroAleatorio.nextInt(9);
-        System.out.println("Numero aleatorio gerado foi "+x);
-        //int x = rand()%10;//semente aleatória para não gerar o mesmo sudoku
-        for(int i = 0; i < n; i++, x++) {
-            for (int j = 0; j < n; j++, x += n) {
-                for (int k = 0; k < n * n; k++, x++) {
-                    field[n * i + j][k] = (x % (n * n)) + 1;
+        int ValorAleatorio = numeroAleatorio.nextInt(9);
+        System.out.println("Numero aleatorio gerado foi "+ValorAleatorio);
+        //int ValorAleatorio = rand()%10;//semente aleatória para não gerar o mesmo sudoku
+        for(int Linha = 0; Linha < Elementos; Linha++, ValorAleatorio++) {
+            for (int j = 0; j < Elementos; j++, ValorAleatorio += Elementos) {
+                for (int Coluna = 0; Coluna < Elementos * Elementos; Coluna++, ValorAleatorio++) {
+                    CampoMatriz[Elementos * Linha + j][Coluna] = (ValorAleatorio % (Elementos * Elementos)) + 1;
                 }
             }
         }
+
+        //╣  ║  ╗  ╝   ╚   ╔   ╩ ╦  ╠  ═   ╬
+        System.out.println("╔═════╦═════╦═════╦╦═════╦═════╦═════╦╦═════╦═════╦═════╗");
         for(int i = 0; i < 9; i++){
-            System.out.println("======================================");
-                System.out.println("||"+field[i][0]+"||"+field[i][1]+"||"+field[i][2]+"||||"+field[i][3]+
-                        "||"+field[i][4]+"||"+field[i][5]+"|||||"+field[i][6]+"||"
-                        +field[i][7]+"||"+field[i][8]+"||");
+
+                System.out.println("║  "+CampoMatriz[i][0]+"  ║  "+CampoMatriz[i][1]+"  ║  "+CampoMatriz[i][2]+"  ║║  "+CampoMatriz[i][3]+
+                        "  ║  "+CampoMatriz[i][4]+"  ║  "+CampoMatriz[i][5]+"  ║║  "+CampoMatriz[i][6]+"  ║  "
+                        +CampoMatriz[i][7]+"  ║  "+CampoMatriz[i][8]+"  ║");
+            System.out.println("╠═════╬═════╬═════╬╬═════╬═════╬═════╬╬═════╬═════╬═════╣");
         }
     }
 }
