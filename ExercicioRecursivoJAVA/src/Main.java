@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-
+//PRECISA DE MUDANÇA, A QUANTIDADE TROCO RECURSIVA TA DANDO ERROR!!!
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
